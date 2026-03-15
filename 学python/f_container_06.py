@@ -214,7 +214,7 @@
 # print(f"成绩优秀的学生有:{[s[1] for s in students if (s[2]+s[3]+s[4])/3 >= 90]}")
 
 
-# #4 集合 集合名 = {元素，元素，元素...} 无序，不可重复，可修改，类型可不一样但必须为不可变
+# #4 集合set 集合名 = {元素，元素，元素...} 无序，不可重复，可修改，类型可不一样但必须为不可变
 # #4.1 集合定义和特点
 # set1 = {3,3,4,8,9,9,4,5,6,1,2,7,8,9,9}#集合在定义时会自动去重，且乱序排序顾不可索引也就不可进行切片操作
 # print(set1)
@@ -260,3 +260,185 @@
 # all_pople_list = [*football_set, *basketball_set, *french_set,*art_set]
 # for i in all_pople_set:
 #     print(f"{i} \t选修了{all_pople_list.count(i)}门课")
+
+
+# #5 字典dict 字典名 = {key1:value,key2:value,key3:value...}
+# #存储键值对,键(key)不可重复且只能使用不可变的元素,有序但不可用索引访问只能通过键访问,数据类型可不一样，不可切片
+# #5.1 字典的定义
+# dict_1 = {"姓名":"王林","成绩":888,"项目":"足球","爱好":"修仙"}
+# print(dict_1)
+# print(type(dict_1))
+# dict_2 = {}#空字典的定义
+# print(dict_2)
+# print(type(dict_2))
+# dict_3 = {"姓名":"王林","成绩":888,"项目":"足球","爱好":"修仙","成绩":999}#键不可以重复，如果重复则后面的数据会覆盖前面的
+# print(dict_3)
+# print(dict_1["姓名"])#通过key来访问value 字典名[key]
+
+# #5.2 字典的一些常见操作
+# dict1 = {"王林":556,"李慕婉":650,"张三":350,"李四":450}
+# #添加
+# dict1["李老道"] = 500#添加操作与修改操作语法一致区别是当匹配到所指定键时执行修改，匹配不到则添加
+# print(dict1)
+# #修改
+# dict1["王林"] = 650
+# print(dict1)
+# #删除
+# d = dict1.pop("张三")#删除所指定的键以及对应的值并返回对应的值
+# print(dict1)
+# print(d)
+# print(type(d))
+# del dict1["李四"]#直接删除所指定的键以及对应的值
+# print(dict1)
+# #查看
+# print(dict1)#查看字典
+# print(dict1.get("李慕婉"))#查看所指定的键所对应的值
+# print(type(dict1.get("李慕婉")))
+# print(dict1.keys())#获取字典中所有的键，并组成 dict_keys(['王林', '李慕婉', '李老道'])
+# print(type(dict1.keys()))
+# print(dict1.values())#获取字典中所有的值，并组成 dict_values([650, 650, 500])
+# print(type(dict1.values()))
+# print(dict1.items())#获取字典中所有的元素，并组成 dict_items([('王林', 650), ('李慕婉', 650), ('李老道', 500)])
+# print(type(dict1.items()))
+
+# #5.3 字典的遍历
+# dict1 = {"王林":556,"李慕婉":650,"张三":350,"李四":450}
+# #方式一
+# for i in dict1.keys():
+#     print(f"{i}:{dict1.get(i)}")
+# #方式二
+# for k,v in dict1.items():
+#     print(f"{k}:{v}")
+# #方式三
+# for item in dict1.items():
+#     print(f"{item[0]}:{item[1]}")
+#
+# #案例 购物车管理系统
+# product = {}
+# while True:
+#     menu = """
+#         购物车
+# #####################
+# #       请选择       #
+# #    1、添加购物车    #
+# #    2、修改购物车    #
+# #    3、删除购物车    #
+# #    4、查询购物车    #
+# #    5、退出购物车    #
+# #####################
+# """
+#     print(menu)
+#     choice = input()
+#     match choice:
+#         case "1":
+#             product_name = input("产品名称:")
+#             product_price = input("产品价格:")
+#             product_num = input("产品数量:")
+#             if product_name in product.keys():
+#                 print("该产品已经添加过了")
+#                 continue
+#             else:
+#                 product[product_name] = [product_price, product_num]
+#                 print("添加完成")
+#         case "2":
+#             product_name = input("修改的产品名称:")
+#             if product_name not in product.keys():
+#                 print("该产品还未添加无法修改")
+#                 continue
+#             else:
+#                 product_price = float(input("修改的产品价格:"))
+#                 product_num = int(input("产品的数量:"))
+#                 product[product_name] = [product_price, product_num]
+#                 print("修改完成")
+#         case "3":
+#             product_name = input("删除的产品名称:")
+#             if product_name not in product.keys():
+#                 print("所填名称不存在")
+#             else:
+#                 del product[product_name]
+#                 print("删除完毕")
+#         case "4":
+#             for i in product.keys():
+#                 print(f"产品名称:{i}\t\t 产品价格:{(product[i])[0]} \t\t 产品数量:{(product[i])[1]}")
+#         case "5":
+#             print("bye bye!")
+#             break
+#         case _:
+#             print("输入不合法，请重新输入")
+
+
+# #总结案例 教务管理系统
+# student_information = {}
+# while True:
+#     menu = """
+# **********教务管理系统**********
+# *       1、添加学生信息        *
+# *       2、修改学生信息        *
+# *       3、删除学生信息        *
+# *       4、查询学生信息        *
+# *       5、学生信息列表        *
+# *       6、班级成绩统计        *
+# *       7、退出管理系统        *
+# **********教务管理系统**********
+# """
+#     print(menu)
+#     choice = input("请选择(1-7):")
+#     match choice:
+#         case "1":
+#             s_id = int(input("请输入学生id:"))
+#             if s_id not in student_information:
+#                 s_name = input("请输入学生姓名:")
+#                 chinese_score = float(input("请输入该学生语文成绩:"))
+#                 math_score = float(input("请输入该学生数学成绩:"))
+#                 english_score = float(input("请输入该学生英语成绩:"))
+#                 student_information[s_id] = [s_name,chinese_score,math_score,english_score]
+#             else:
+#                 print("该学生已经添加过了")
+#         case "2":
+#             s_id = int(input("请输入要修改的学生id:"))
+#             if s_id in student_information:
+#                 s_name = student_information[s_id][0]
+#                 chinese_score = float(input("请输入该学生语文成绩:"))
+#                 math_score = float(input("请输入该学生数学成绩:"))
+#                 english_score = float(input("请输入该学生英语成绩:"))
+#                 student_information[s_id] = [s_name, chinese_score, math_score, english_score]
+#             else:
+#                 print("未找到该学生")
+#         case "3":
+#             clear_id = int(input("请输入要删除的学生id:"))
+#             if clear_id in student_information:
+#                 del student_information[clear_id]
+#             else:
+#                 print("未找到该学生")
+#         case "4":
+#             find_id = int(input("请输入要查询的学生id:"))
+#             if find_id in student_information:
+#                 print(f"学生id:{find_id} \t\t 学生姓名:{student_information[find_id][0]} \t\t 语文成绩:{student_information[find_id][1]} \t\t 数学成绩:{student_information[find_id][2]} \t\t 英语成绩:{student_information[find_id][3]}")
+#             else:
+#                 print("未找到该学生")
+#         case "5":
+#             for i in student_information:
+#                 print(f"学生id:{i} \t\t 学生姓名:{student_information[i][0]} \t\t 语文成绩:{student_information[i][1]} \t\t 数学成绩:{student_information[i][2]} \t\t 英语成绩:{student_information[i][3]}")
+#         case "6":
+#             c_list1 = [i[1] for i in student_information.values()]
+#             m_list2 = [i[2] for i in student_information.values()]
+#             e_list3 = [i[3] for i in student_information.values()]
+#             for j in student_information.values():
+#                 if j[1] == max(c_list1):
+#                     print(f"语文成绩最高分是:{j[0]} \t {j[1]}")
+#                 if j[1] == min(c_list1):
+#                     print(f"语文成绩最低分是:{j[0]} \t {j[1]}")
+#                 if j[2] == max(m_list2):
+#                     print(f"数学成绩最高分是:{j[0]} \t {j[2]}")
+#                 if j[2] == min(m_list2):
+#                     print(f"数学成绩最低分是:{j[0]} \t {j[2]}")
+#                 if j[3] == max(e_list3):
+#                     print(f"英语成绩最高分是:{j[0]} \t {j[3]}")
+#                 if j[3] == min(e_list3):
+#                     print(f"英语成绩最低分是:{j[0]} \t {j[3]}")
+#             print(f"语文成绩平均分为{sum(c_list1)/len(c_list1)}\n数学成绩平均分为{sum(m_list2)/len(m_list2)} \n英语成绩平均分为{sum(e_list3)/len(e_list3)} \n")
+#         case "7":
+#             print("bye bye~")
+#             break
+#         case _:
+#             print("非法输入,请重新输入！")
